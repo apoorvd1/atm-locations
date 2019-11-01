@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: ATM-Location-Service
+
+ingLocatorHost: https://www.ing.nl/api/locator/atms/

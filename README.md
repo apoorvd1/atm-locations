@@ -23,4 +23,4 @@ gradlew sonarqube
 
 ###Access ATM Services
 ATM Locator Service is running on default port 8080
-To access the ATM Locators `http://localhost:8080/api/v1/locations`
+To access the ATM Locators `http://localhost:8080/atm/api/v1/locations`

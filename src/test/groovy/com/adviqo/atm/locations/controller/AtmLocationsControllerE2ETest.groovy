@@ -22,7 +22,7 @@ class AtmLocationsControllerE2ETest extends Specification {
 
     def "should retrieve all the locations"() {
         when:
-        def locators = slurper.parse(new URL("http://localhost:${port}/api/v1/locations"))
+        def locators = slurper.parse(new URL("http://localhost:${port}/atm/api/v1/locations"))
 
         then:
         locators != null
@@ -33,7 +33,7 @@ class AtmLocationsControllerE2ETest extends Specification {
         TestRestTemplate restTemplate = new TestRestTemplate()
 
         when:
-        def response = restTemplate.getForEntity("http://localhost:${port}/api/v1/locations", String)
+        def response = restTemplate.getForEntity("http://localhost:${port}/atm/api/v1/locations", String)
 
         then:
         response.statusCode == HttpStatus.OK
@@ -44,7 +44,7 @@ class AtmLocationsControllerE2ETest extends Specification {
         TestRestTemplate restTemplate = new TestRestTemplate()
 
         when:
-        def response = restTemplate.getForEntity("http://localhost:${port}/api/v2/locations", String)
+        def response = restTemplate.getForEntity("http://localhost:${port}/atm/api/v2/locations", String)
 
         then:
         response.statusCode == HttpStatus.NOT_FOUND

@@ -12,12 +12,12 @@ import spock.lang.Specification
 class AtmLocationsControllerE2ETest extends Specification {
 
     @Value('${local.server.port}')
-    int port;
+    int port
 
-    JsonSlurper slurper;
+    JsonSlurper slurper
 
     void setup() {
-        slurper = new JsonSlurper();
+        slurper = new JsonSlurper()
     }
 
     def "should retrieve all the locations"() {

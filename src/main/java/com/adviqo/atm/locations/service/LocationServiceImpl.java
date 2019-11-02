@@ -71,7 +71,7 @@ public class LocationServiceImpl implements LocationService {
      * Retrieve ATM Locators.
      *
      * @param responseEntity responseEntity
-     * @return List<Locations>
+     * @return List<Locations></Locations>
      */
     private List<Locations> retrieveATMLocators(ResponseEntity<String> responseEntity) {
         List<Locations> locations;

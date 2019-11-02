@@ -15,6 +15,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class AtmLocationSwaggerConfiguration {
 
+    /**
+     * Swagger API Info
+     *
+     * @return ApiInfo
+     */
     public ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("ATM Location Services")
@@ -27,6 +32,11 @@ public class AtmLocationSwaggerConfiguration {
                 .build();
     }
 
+    /**
+     * Swagger Documentation.
+     *
+     * @return Docket
+     */
     @Bean
     public Docket newsApi() {
         return new Docket(DocumentationType.SWAGGER_2)

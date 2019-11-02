@@ -28,8 +28,8 @@ public final class MockData {
         geoLocation.setLng("4.741973");
         address.setCity("Den Helder");
         address.setGeoLocation(geoLocation);
-        address.setHouseNumber("");
-        address.setPostalCode("");
+        address.setHousenumber("");
+        address.setPostalcode("");
         address.setStreet("Marsdiepstraat");
 
         locations.setAddress(address);
@@ -39,6 +39,10 @@ public final class MockData {
     }
 
     public static String getLocators() {
-        return ")]}',[{\"address\":{\"street\":\"Johannes van Vlotenlaan\",\"housenumber\":\"1\",\"postalcode\":\"7412 SB\",\"city\":\"Deventer\",\"geoLocation\":{\"lat\":\"52.26656\",\"lng\":\"6.14299\"}},\"distance\":50,\"type\":\"ING\"}]";
+        return ")]}',[{\"address\"" +
+                ":{\"street\":\"Johannes van Vlotenlaan\"," +
+                "\"housenumber\":\"1\",\"postalcode\":\"7412 SB\"," +
+                "\"city\":\"Deventer\",\"geoLocation\":{\"lat\":\"52.26656\"" +
+                ",\"lng\":\"6.14299\"}},\"distance\":50,\"type\":\"ING\"}]";
     }
 }

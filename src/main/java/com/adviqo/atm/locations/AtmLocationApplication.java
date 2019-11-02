@@ -12,6 +12,7 @@ public class AtmLocationApplication extends SpringBootServletInitializer {
         SpringApplication.run(AtmLocationApplication.class, args);
     }
 
+    @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder applicationBuilder) {
         return applicationBuilder.sources(AtmLocationApplication.class);
     }

@@ -6,8 +6,8 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,7 +29,7 @@ public class AtmLocationsController {
     }
 
     @ApiOperation(value = "Returns the list of ATM Locations")
-    @RequestMapping(method = RequestMethod.GET, path = "/v1/locations")
+    @GetMapping(path = "/v1/locations")
     @ResponseStatus(OK)
     public List<Locations> findLocation() {
         LOGGER.info("[START] call location controller ");

@@ -32,9 +32,16 @@ public class LocatorIndicatorsTest {
     }
 
     @Test
-    public void shouldReturnTheActiveProfile() {
+    public void shouldReturnTheHealthStatusUP() {
         Health health = locatorIndicators.health();
         Assert.assertEquals("UP", health.getStatus().getCode());
+    }
+
+    @Test
+    public void shouldReturnTheHealthStatusDOWN() {
+        LocatorIndicators locatorIndicators = new LocatorIndicators(null);
+        Health health = locatorIndicators.health();
+        Assert.assertEquals("DOWN", health.getStatus().getCode());
     }
 
 }

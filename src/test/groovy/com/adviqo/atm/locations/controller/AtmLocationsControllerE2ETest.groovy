@@ -1,7 +1,6 @@
 package com.adviqo.atm.locations.controller
 
 import com.adviqo.atm.locations.AtmLocationApplication
-import com.adviqo.atm.locations.exception.AtmLocationRuntimeException
 import groovy.json.JsonSlurper
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
@@ -48,5 +47,6 @@ class AtmLocationsControllerE2ETest extends Specification {
         def response = restTemplate.getForEntity("http://localhost:${port}/api/v2/locations", String)
 
         then:
-        response.statusCode == HttpStatus.NOT_FOUND    }
+        response.statusCode == HttpStatus.NOT_FOUND
+    }
 }

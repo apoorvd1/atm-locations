@@ -1,7 +1,6 @@
 package com.adviqo.atm.locations.model;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,10 +19,10 @@ public class Address implements Serializable {
     private String street;
 
     @JsonAlias("housenumber")
-    private String houseNumber;
+    private String housenumber;
 
     @JsonAlias("postalcode")
-    private String postalCode;
+    private String postalcode;
 
     private String city;
     private GeoLocation geoLocation;

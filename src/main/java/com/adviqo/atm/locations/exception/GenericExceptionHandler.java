@@ -22,7 +22,7 @@ public class GenericExceptionHandler {
     private static final String GENERIC_ERROR_MESSAGE = "Something Went Wrong, Server Error";
 
     /**
-     * Handle Exception for root error
+     * Handle Exception for root error.
      *
      * @param ex ex
      * @return ResponseEntity
@@ -37,7 +37,7 @@ public class GenericExceptionHandler {
     }
 
     /**
-     * Exception Handler for internal static data
+     * Exception Handler for internal static data.
      *
      * @param ex ex
      * @return ResponseEntity

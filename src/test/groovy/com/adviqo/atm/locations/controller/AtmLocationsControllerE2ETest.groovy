@@ -1,12 +1,19 @@
 package com.adviqo.atm.locations.controller
 
 import com.adviqo.atm.locations.AtmLocationApplication
+import com.adviqo.atm.locations.exception.GenericExceptionHandler
+import com.adviqo.atm.locations.service.LocationService
 import groovy.json.JsonSlurper
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.http.HttpStatus
+import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import spock.lang.Specification
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @SpringBootTest(classes = AtmLocationApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class AtmLocationsControllerE2ETest extends Specification {
@@ -15,6 +22,9 @@ class AtmLocationsControllerE2ETest extends Specification {
     int port
 
     JsonSlurper slurper
+
+    MockMvc mvcMock
+
 
     void setup() {
         slurper = new JsonSlurper()
@@ -26,27 +36,42 @@ class AtmLocationsControllerE2ETest extends Specification {
 
         then:
         locators != null
+        locators.size == 1478
     }
 
-    def "return ok when location is found "() {
+    def "Should return an not found error when an unhandled exception is thrown"() {
         given:
-        TestRestTemplate restTemplate = new TestRestTemplate()
+        def locationService = Mock(LocationService)
+        AtmLocationsController controller = new AtmLocationsController(locationService)
+
+        mvcMock = MockMvcBuilders
+                .standaloneSetup(controller)
+                .setControllerAdvice(new GenericExceptionHandler())
+                .build()
 
         when:
-        def response = restTemplate.getForEntity("http://localhost:${port}/atm/api/v1/locations", String)
+        def response = mvcMock.perform(MockMvcRequestBuilders.get("/api/v2/locations"))
 
         then:
-        response.statusCode == HttpStatus.OK
+        response.andExpect(status().isNotFound())
     }
 
-    def "should throw exception for invalid  locations"() {
+    def "Should return an internal server error when an unhandled exception is thrown"() {
         given:
-        TestRestTemplate restTemplate = new TestRestTemplate()
+        def locationService = Mock(LocationService) {
+            _ >> { throw new RuntimeException() }
+        }
+        AtmLocationsController controller = new AtmLocationsController(locationService)
+
+        mvcMock = MockMvcBuilders
+                .standaloneSetup(controller)
+                .setControllerAdvice(new GenericExceptionHandler())
+                .build()
 
         when:
-        def response = restTemplate.getForEntity("http://localhost:${port}/atm/api/v2/locations", String)
+        def response = mvcMock.perform(MockMvcRequestBuilders.get("/api/v1/locations"))
 
         then:
-        response.statusCode == HttpStatus.NOT_FOUND
+        response.andExpect(status().isInternalServerError())
     }
 }
